@@ -11,6 +11,7 @@ class MassUpdateException(Exception):
     pass
 
 
+# TODO: Use requests.Session() to simplify most of these requests.
 class Connection(object):
     def __init__(self, credentials, obj_endpoint, api_version):
         """
@@ -36,6 +37,7 @@ class Connection(object):
         contacts = []
         more_records_to_pull = True
 
+        # TODO: This is gross...
         url = self.instance_url + '/services/data/v{}/sobjects/{}/updated/?start={}&end={}'.format(self.api_version,
                                                                                                    self.obj_endpoint,
                                                                                                    self.start_date,
